@@ -1,0 +1,16 @@
+timeout: 60s
+steps:
+  - id: Build app image
+    name: gcr.io/cloud-builders/docker
+    dir: app
+    args:
+      - build
+      - '-t'
+      - testing-app
+      - .
+  - id: Start app for testing
+    name: gcr.io/cloud-builders/docker
+    args:
+      - run
+      - '--rm'
+      - testing-app
